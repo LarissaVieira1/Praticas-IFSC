@@ -3,6 +3,7 @@ package model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -10,16 +11,17 @@ public class UsuarioDAO extends GenericDAO {
 
     // Método para salvar usuarios
     public void salvar(Usuario usuario) throws SQLException {
-        String insert = "INSERT INTO USUARIOS(nome, fone, login, senha, perfil) VALUES(?,?,?,?,?)";
-          save(insert, usuario.getNome(), usuario.getFone(), usuario.getLogin(), usuario.getSenha(), usuario.getPerfil());
+        String insert = "INSERT INTO USUARIOS(nome, fone, login, senha, perfil, email, aniversario) VALUES(?,?,?,?,?,?,?)";
+          save(insert, usuario.getNome(), usuario.getFone(), usuario.getLogin(), usuario.getSenha(), usuario.getPerfil(),
+                  usuario.getEmail(), usuario.getAniversario());
     }
 
     // Método para alterar usuarios
     public void alterar(Usuario usuario) throws SQLException {
-        String update = "UPDATE USUARIOS " + "SET nome = ?, fone = ?, login = ?, senha = ?, perfil = ? "
+        String update = "UPDATE USUARIOS " + "SET nome = ?, fone = ?, login = ?, senha = ?, perfil = ?, email = ?, aniversario = ?"
                 + "WHERE ID = ?";
 		update(update, usuario.getId(), usuario.getNome(), usuario.getFone(), usuario.getLogin(),
-				usuario.getSenha(), usuario.getPerfil());
+				usuario.getSenha(), usuario.getPerfil(), usuario.getEmail(), usuario.getAniversario());
     }
 
     // Método para excluir usuarios
@@ -44,7 +46,10 @@ public class UsuarioDAO extends GenericDAO {
             usuario.setLogin(rs.getString("login"));
             usuario.setSenha(rs.getString("senha"));
             usuario.setPerfil(rs.getString("perfil"));
-
+            usuario.setEmail(rs.getString("email"));
+            LocalDate dataAniver = LocalDate.parse(rs.getString("aniversario"));
+            usuario.setAniversario(dataAniver);
+            
             lista.add(usuario);
         }
 
@@ -69,6 +74,10 @@ public class UsuarioDAO extends GenericDAO {
             usuario.setLogin(rs.getString("login"));
             usuario.setSenha(rs.getString("senha"));
             usuario.setPerfil(rs.getString("perfil"));
+            usuario.setEmail(rs.getString("email"));
+            LocalDate dataAniver = LocalDate.parse(rs.getString("aniversario"));
+            usuario.setAniversario(dataAniver);
+            
         }
 
         rs.close();

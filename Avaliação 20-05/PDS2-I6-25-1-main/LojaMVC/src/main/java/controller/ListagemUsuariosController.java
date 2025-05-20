@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -116,10 +117,20 @@ public class ListagemUsuariosController {
                     = new TableColumn<>("Perfil");
             colunaPerfil.setCellValueFactory(u
                     -> u.getValue().perfilProperty());
+            
+             TableColumn<Usuario, String> colunaEmail
+                    = new TableColumn<>("Email");
+            colunaEmail.setCellValueFactory(u
+                    -> u.getValue().emailProperty());
+            
+             TableColumn<Usuario, LocalDate> colunaAniver
+                    = new TableColumn<>("Aniversário");
+            colunaAniver.setCellValueFactory(u
+                    -> u.getValue().aniverProperty());
 
             tabelaUsuarios.getColumns().addAll(colunaID,
                     colunaNome, colunaFone, colunaLogin,
-                    colunaPerfil);
+                    colunaPerfil, colunaEmail, colunaAniver);
 
 //            tabelaUsuarios.setItems(lista);
             FilteredList<Usuario> listaFiltrada = new
@@ -135,6 +146,7 @@ public class ListagemUsuariosController {
                             || usuario.getLogin().toLowerCase().contains(filtro)
                             || usuario.getFone().toLowerCase().contains(filtro)
                             || usuario.getPerfil().toLowerCase().contains(filtro);
+                    //Mexer?
                 });
             });
                 SortedList<Usuario> listaOrdenada = new SortedList<>(listaFiltrada);

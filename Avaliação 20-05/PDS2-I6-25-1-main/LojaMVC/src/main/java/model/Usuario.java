@@ -1,8 +1,11 @@
 package model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -14,24 +17,30 @@ public class Usuario implements Serializable {
     private String login;
     private String senha;
     private String perfil;
+    private String email;
+    private LocalDate aniversario;
 
     // Método construtor com todos os parâmetros
-    public Usuario(int id, String nome, String fone, String login, String senha, String perfil) {
+    public Usuario(int id, String nome, String fone, String login, String senha, String perfil, String email, LocalDate aniversario) {
         this.id = id;
         this.nome = nome;
         this.fone = fone;
         this.login = login;
         this.senha = senha;
         this.perfil = perfil;
+        this.email = email;
+        this.aniversario = aniversario;
     }
 
     // Método construtor com todos os parâmetros menos ID
-    public Usuario(String nome, String fone, String login, String senha, String perfil) {
+    public Usuario(String nome, String fone, String login, String senha, String perfil, String email, LocalDate aniversario) {
         this.nome = nome;
         this.fone = fone;
         this.login = login;
         this.senha = senha;
         this.perfil = perfil;
+        this.email = email;
+        this.aniversario = aniversario;
     }
 
     // Método construtor para o login
@@ -111,6 +120,22 @@ public class Usuario implements Serializable {
         return nomeProperty;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public LocalDate getAniversario() {
+        return aniversario;
+    }
+
+    public void setAniversario(LocalDate aniversario) {
+        this.aniversario = aniversario;
+    }
+
     private transient StringProperty foneProperty;
 
     public StringProperty foneProperty() {
@@ -145,6 +170,22 @@ public class Usuario implements Serializable {
             perfilProperty = new SimpleStringProperty(perfil);
         }
         return perfilProperty;
+    }
+    
+    private transient StringProperty emailProperty;
+    public StringProperty emailProperty() {
+        if (emailProperty == null) {
+            emailProperty = new SimpleStringProperty(email);
+        }
+        return emailProperty;
+    }
+    
+    private transient ObjectProperty<LocalDate> aniverProperty;
+    public ObjectProperty<LocalDate> aniverProperty() {
+        if (aniverProperty == null) {
+            aniverProperty = new SimpleObjectProperty<LocalDate>(aniversario);
+        }
+        return aniverProperty;
     }
 
 }
