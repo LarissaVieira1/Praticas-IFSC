@@ -50,6 +50,8 @@ public class CadastroUsuariosController {
 
     @FXML
     private TextField txtTelefone;
+    
+    AlertaUtil alerta = new AlertaUtil();
 
     @FXML
     void btnExcluirClick(ActionEvent event) throws SQLException {
@@ -70,6 +72,29 @@ public class CadastroUsuariosController {
 
     @FXML
     void btnIncluirAlterarClick(ActionEvent event) throws SQLException {
+        if(txtNome.getText().isEmpty()){
+           alerta.mostrarAviso("Campo Vazio", "Campo nome está vazio, por favor preencher com um valor válido!");
+           return;
+        } else if(txtTelefone.getText().isEmpty()) {
+           alerta.mostrarAviso("Campo Vazio", "Campo telefone está vazio, por favor preencher com um valor válido!");
+           return; 
+        }else if(txtLogin.getText().isEmpty()) {
+           alerta.mostrarAviso("Campo Vazio", "Campo login está vazio, por favor preencher com um valor válido!");
+           return; 
+        }else if(txtSenha.getText().isEmpty()) {
+           alerta.mostrarAviso("Campo Vazio", "Campo senha está vazio, por favor preencher com um valor válido!");
+           return; 
+        }else if(cbPerfil.getSelectionModel().getSelectedItem().isEmpty()) {
+           alerta.mostrarAviso("Campo Vazio", "Campo perfil está vazio, por favor preencher com um valor válido!");
+           return; 
+        }else if(txtEmail.getText().isEmpty()) {
+           alerta.mostrarAviso("Campo Vazio", "Campo email está vazio, por favor preencher com um valor válido!");
+           return; 
+        }else if(dpAniver.getValue() == null) {
+           alerta.mostrarAviso("Campo Vazio", "Campo aniversário está vazio, por favor preencher com um valor válido!");
+           return; 
+        }
+        
         if(usuarioSelecionado == null){
             incluir(txtNome.getText(),
             txtTelefone.getText(), txtLogin.getText(),

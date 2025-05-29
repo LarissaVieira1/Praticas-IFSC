@@ -39,17 +39,9 @@ public class UsuarioDAO extends GenericDAO {
         ResultSet rs = pstm.executeQuery();
 
         while (rs.next()) {
-            Usuario usuario = new Usuario();
-            usuario.setId(rs.getInt("id"));
-            usuario.setNome(rs.getString("nome"));
-            usuario.setFone(rs.getString("fone"));
-            usuario.setLogin(rs.getString("login"));
-            usuario.setSenha(rs.getString("senha"));
-            usuario.setPerfil(rs.getString("perfil"));
-            usuario.setEmail(rs.getString("email"));
-            LocalDate dataAniver = LocalDate.parse(rs.getString("aniversario"));
-            usuario.setAniversario(dataAniver);
-            
+           LocalDate dataAniver = LocalDate.parse(rs.getString("aniversario")); 
+           Usuario usuario = new Usuario(rs.getInt("id"),rs.getString("nome"),rs.getString("fone"),rs.getString("login"),rs.getString("senha"),
+                    rs.getString("perfil"), rs.getString("email"), dataAniver);
             lista.add(usuario);
         }
 
