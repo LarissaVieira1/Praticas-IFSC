@@ -18,6 +18,62 @@ USE `lojabd`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `cliente`
+--
+
+DROP TABLE IF EXISTS `cliente`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cliente` (
+  `idCliente` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  `telefone` varchar(20) DEFAULT NULL,
+  `endereco` varchar(255) DEFAULT NULL,
+  `data_nascimento` date DEFAULT NULL,
+  PRIMARY KEY (`idCliente`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cliente`
+--
+
+LOCK TABLES `cliente` WRITE;
+/*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `item_venda`
+--
+
+DROP TABLE IF EXISTS `item_venda`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `item_venda` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `venda_id` int DEFAULT NULL,
+  `produto_id` int DEFAULT NULL,
+  `quantidade` int NOT NULL,
+  `preco_unitario` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `venda_id` (`venda_id`),
+  KEY `produto_id` (`produto_id`),
+  CONSTRAINT `item_venda_ibfk_1` FOREIGN KEY (`venda_id`) REFERENCES `venda` (`id`),
+  CONSTRAINT `item_venda_ibfk_2` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `item_venda`
+--
+
+LOCK TABLES `item_venda` WRITE;
+/*!40000 ALTER TABLE `item_venda` DISABLE KEYS */;
+/*!40000 ALTER TABLE `item_venda` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `produto`
 --
 
@@ -25,11 +81,11 @@ DROP TABLE IF EXISTS `produto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `produto` (
-  `idproduto` int NOT NULL AUTO_INCREMENT,
-  `descricao` varchar(45) NOT NULL,
-  `valor` decimal(6,2) NOT NULL,
-  `quantEstoque` int NOT NULL,
-  PRIMARY KEY (`idproduto`)
+  `id` int NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(100) NOT NULL,
+  `valor` decimal(10,2) NOT NULL,
+  `quantidade_estoque` int NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -81,12 +137,13 @@ DROP TABLE IF EXISTS `venda`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `venda` (
-  `idUsuario` int NOT NULL,
-  `idProduto` int NOT NULL,
-  PRIMARY KEY (`idUsuario`,`idProduto`),
-  KEY `idproduto_idx` (`idProduto`),
-  CONSTRAINT `id` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`id`),
-  CONSTRAINT `idproduto` FOREIGN KEY (`idProduto`) REFERENCES `produto` (`idproduto`)
+  `id` int NOT NULL AUTO_INCREMENT,
+  `data_compra` date NOT NULL,
+  `valor_total` decimal(10,2) DEFAULT NULL,
+  `cliente_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idCliente_idx` (`cliente_id`),
+  CONSTRAINT `idCliente` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`idCliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -108,4 +165,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-29 11:56:57
+-- Dump completed on 2025-06-05 11:17:03
