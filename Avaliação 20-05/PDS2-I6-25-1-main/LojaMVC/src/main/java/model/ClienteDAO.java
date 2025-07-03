@@ -2,6 +2,7 @@ package model;
 
 import dal.ConexaoBD;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,10 +37,18 @@ public class ClienteDAO {
             ResultSet rs = stmt.executeQuery()){
             
             while(rs.next()){
-               
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                String telefone = rs.getString("telefone");
+                String endereco = rs.getString("endereco");
+                Date nascimento = rs.getDate("data_nascimento");
+                
+                System.out.println("ID: " + id + " | Nome: " + nome + " | Tel: " + telefone +
+                        " | Endereço: " + endereco + " | Nascimento: " + nascimento);
             }
             
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println("Erro ao listar clientes: " + e.getMessage());
         }
     }
     }
