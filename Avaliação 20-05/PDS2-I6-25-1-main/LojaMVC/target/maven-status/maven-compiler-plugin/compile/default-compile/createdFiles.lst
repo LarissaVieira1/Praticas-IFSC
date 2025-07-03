@@ -11,3 +11,4 @@ model\Cliente.class
 controller\ListagemUsuariosController.class
 model\UsuarioDAO.class
 util\AlertaUtil.class
+model\ClienteDAO.class
