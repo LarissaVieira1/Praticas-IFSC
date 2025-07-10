@@ -84,13 +84,7 @@ public class ItemVendaController {
 
     try {
         ItemVendaDAO itemVendaDAO = new ItemVendaDAO();
-        boolean temVendas = itemVendaDAO.produtoTemVendas(produtoSelecionado.getId());
-
-        if (temVendas) {
-            AlertaUtil.mostrarErro("Erro", "Não é possível excluir o produto, pois ele já está vinculado a uma venda.");
-            return;
-        }
-
+      
         ProdutoDAO dao = new ProdutoDAO();
         dao.excluirProduto(produtoSelecionado.getId());
 

@@ -1,10 +1,10 @@
 
 .root {
-    -fx-background-image: url("/images/background.jpg");
+    -fx-background-image: url("/images/download.jpg");
 }
 
 .button {
-    -fx-background-color: #4CAF50;
+    -fx-background-color: #Fa8fb1;
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
@@ -12,10 +12,10 @@
     -fx-pref-height: 25px;
     -fx-border-radius: 5px;
     -fx-border-width: 2px;
-    -fx-border-color: #66cdaa;
+    -fx-border-color: #ffc1d5;
 }
 
 .button:hover {
-    -fx-background-color: #45A049;
+    -fx-background-color: #ffc1d5;
     -fx-border-color: #FFFFFF;
 }

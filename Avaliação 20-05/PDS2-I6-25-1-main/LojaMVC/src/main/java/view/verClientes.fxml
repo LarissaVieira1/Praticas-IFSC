@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="controller.VerClientesController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VerClientesController">
    <children>
-      <TableView fx:id="TableViewClientes" layoutX="83.0" layoutY="94.0" prefHeight="211.0" prefWidth="434.0">
+      <TableView fx:id="TableViewClientes" layoutX="82.0" layoutY="95.0" prefHeight="211.0" prefWidth="436.0">
          <columns>
             <TableColumn fx:id="colunaNome" prefWidth="104.80004692077637" text="Nome" />
             <TableColumn fx:id="colunaTelefone" prefWidth="111.19995880126953" text="Telefone" />
@@ -15,5 +17,11 @@
             <TableColumn fx:id="colunaNascimento" prefWidth="104.79998779296875" text="Nascimento" />
          </columns>
       </TableView>
+      <Label layoutX="253.0" layoutY="39.0" text="Cliente">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnFecharC" layoutX="274.0" layoutY="321.0" mnemonicParsing="false" onAction="#onClickbtnFecharC" text="Fechar" />
    </children>
 </AnchorPane>

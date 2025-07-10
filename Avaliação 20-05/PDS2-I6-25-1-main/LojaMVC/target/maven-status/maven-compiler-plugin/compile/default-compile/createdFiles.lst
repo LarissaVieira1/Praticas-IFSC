@@ -4,6 +4,7 @@ model\Usuario.class
 model\ItemVendaDAO.class
 controller\VerClientesController$1.class
 model\GenericDAO.class
+controller\ClienteController.class
 controller\LoginController.class
 model\LoginDAO.class
 module-info.class

@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -13,6 +14,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Cliente;
 import model.ClienteDAO;
+import model.ItemVendaDAO;
+import model.Produto;
+import model.ProdutoDAO;
 import util.AlertaUtil;
 
 public class VerClientesController {
@@ -22,7 +26,7 @@ public class VerClientesController {
         this.stage = stage;
     }
 
-        @FXML
+    @FXML
     private TableView<Cliente> TableViewClientes;
 
     @FXML
@@ -40,7 +44,12 @@ public class VerClientesController {
     public void ajustarElementosJanela() {
         carregarClientesTabela();   
     }    
-    
+
+    @FXML
+    void onClickbtnFecharC(ActionEvent event) {
+            stage.close();
+    }
+
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public void carregarClientesTabela() {
         try {
@@ -67,5 +76,7 @@ public class VerClientesController {
             AlertaUtil.mostrarErro("Erro", "Erro ao carregar clientes: " + e.getMessage());
             e.printStackTrace();
         }
+        
+
     }
 }
