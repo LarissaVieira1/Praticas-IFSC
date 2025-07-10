@@ -7,20 +7,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="controller.PrincipalController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PrincipalController">
    <children>
       <MenuBar layoutX="87.0" layoutY="188.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu fx:id="menuCadastro" mnemonicParsing="false" text="Cadastro">
             <items>
-                  <MenuItem fx:id="menuCadastroUsuarios" mnemonicParsing="false" onAction="#menuCadastroUsuariosClick" text="Usuários" />
+                  <MenuItem fx:id="cadastrarProduto" mnemonicParsing="false" onAction="#menuCadastroProdutoClick" text="Produto" />
+                  <MenuItem fx:id="cadastrarCliente" mnemonicParsing="false" onAction="#OnActionCadastrarCliente" text="Clientes" />
               <MenuItem fx:id="menuFechar" mnemonicParsing="false" onAction="#menuFecharClick" text="Fechar" />
             </items>
           </Menu>
           <Menu fx:id="menuRelatorios" mnemonicParsing="false" text="Relatórios">
             <items>
-              <MenuItem fx:id="menuRelatorioUsuarios" mnemonicParsing="false" text="Usuários" />
+                  <MenuItem fx:id="menuRelatorioProdutos" mnemonicParsing="false" onAction="#OnActionMenuRelatorioProdutos" text="Produtos" />
+                  <MenuItem fx:id="menuViewClientes" mnemonicParsing="false" onAction="#OnActionMenuViewClientes" text="Clientes" />
             </items>
           </Menu>
           <Menu fx:id="menuAjuda" mnemonicParsing="false" text="Ajuda">

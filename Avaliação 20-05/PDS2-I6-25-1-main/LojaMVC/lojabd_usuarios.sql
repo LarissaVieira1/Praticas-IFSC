@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `lojabd` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `lojabd`;
 -- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
 --
 -- Host: localhost    Database: lojabd
@@ -18,29 +16,30 @@ USE `lojabd`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `cliente`
+-- Table structure for table `clientes`
 --
 
-DROP TABLE IF EXISTS `cliente`;
+DROP TABLE IF EXISTS `clientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `cliente` (
-  `idCliente` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `clientes` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `telefone` varchar(20) DEFAULT NULL,
   `endereco` varchar(255) DEFAULT NULL,
   `data_nascimento` date DEFAULT NULL,
-  PRIMARY KEY (`idCliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cliente`
+-- Dumping data for table `clientes`
 --
 
-LOCK TABLES `cliente` WRITE;
-/*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-/*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
+LOCK TABLES `clientes` WRITE;
+/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+INSERT INTO `clientes` VALUES (1,'João Pedro','47858585898','Rua Clara Schmitz, 93','2007-01-25');
+/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -112,11 +111,11 @@ CREATE TABLE `usuarios` (
   `login` varchar(15) NOT NULL,
   `senha` varchar(15) NOT NULL,
   `perfil` varchar(10) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `aniversario` date NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `aniversario` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `login_UNIQUE` (`login`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,7 +124,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Fulano','234234','fulano','1234','admin','Fulano@gmail.com','2007-01-17'),(2,'Beltrano','234234243','beltrano','1234','user','Beltrano@gmail.com','2006-04-24'),(4,'thales','477777777','thales','123','admin','Thales@gmail.com','2024-10-29');
+INSERT INTO `usuarios` VALUES (1,'Fulano','234234','fulano','1234','admin','',NULL),(2,'Beltrano','234234243','beltrano','1234','user','',NULL),(3,'João Pedro ','4758585858','joao','123456','user','joao90090','2004-05-20');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,8 +141,8 @@ CREATE TABLE `venda` (
   `valor_total` decimal(10,2) DEFAULT NULL,
   `cliente_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `idCliente_idx` (`cliente_id`),
-  CONSTRAINT `idCliente` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`idCliente`)
+  KEY `cliente_id` (`cliente_id`),
+  CONSTRAINT `venda_ibfk_1` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -165,4 +164,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-05 11:17:03
+-- Dump completed on 2025-06-05 11:47:58
